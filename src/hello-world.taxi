@@ -16,6 +16,8 @@ Also described is the FilmReview model, and we can see that a connection has bee
 We'd love to hear what you think. Head over to our GitHub repo to report issues, or jump on our Slack channel to chat.
 */
 
+
+[[ This is a film. We watch these to distract our children. ]]
 model Film {
   filmId : FilmId inherits String
 }
@@ -24,6 +26,8 @@ service FilmsDatabase {
   table films : Film[]
 }
 
+
+[[ People take opinions on whether films are good, but we largely ignore them ]]
 model FilmReview {
   id : FilmId
 
