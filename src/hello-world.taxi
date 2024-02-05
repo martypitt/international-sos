@@ -1,8 +1,41 @@
-type FirstName inherits String
-type LastName inherits String
+/**
+Welcome to Voyager - a microservices diagramming tool.
 
-model Person {
-    id : PersonId inherits Int // inline type
-    firstName : FirstName
-    lastName : LastName
+Easily create diagrams that visualize the connections between services and data sources in your stack
+
+How it works:
+
+- Describe your services and model
+
+That's it! Links between services will automatically be made where types are shared.
+
+e.g. In the example below, we have a Reviews service which accepts an Input of FilmId and returns a FilmReview.
+
+Also described is the FilmReview model, and we can see that a connection has been added between the two objects in the diagram.
+
+We'd love to hear what you think. Head over to our GitHub repo to report issues, or jump on our Slack channel to chat.
+*/
+
+model Film {
+  filmId : FilmId inherits String
 }
+
+service FilmsDatabase {
+  table films : Film[]
+}
+
+model FilmReview {
+  id : FilmId
+
+  // reviewScore is typed as an Int.
+  // This is fine, but could be more descriptive by using a
+  // semantic type (such as ReviewScore inherits Int),
+  // which lets other services indicate that they share the same attribute.
+  // The linter offers a warning to let us know.
+  reviewScore: Int
+}
+
+service Reviews {
+  operation getReview(FilmId): FilmReview
+}
+  
