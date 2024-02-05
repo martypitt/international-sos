@@ -1,0 +1,8 @@
+type FirstName inherits String
+type LastName inherits String
+
+model Person {
+    id : PersonId inherits Int // inline type
+    firstName : FirstName
+    lastName : LastName
+}
